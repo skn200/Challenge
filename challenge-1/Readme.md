@@ -19,6 +19,9 @@ Pre requisite to build the solution
 
 Architecture:
 
+![image](https://user-images.githubusercontent.com/58088308/121822175-45630500-ccbb-11eb-841a-db7f0503a172.png)
+
+
 
 Components used in this template:
 
