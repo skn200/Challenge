@@ -14,9 +14,13 @@ output "vault_uri" {
 }
 
 output "mysecret" {
-value = azurerm_key_vault_certificate.mysecret.secret_id
+  value = azurerm_key_vault_certificate.mysecret.secret_id
 }
 
 output "identity" {
-value = azurerm_user_assigned_identity.agw.id
+  value = azurerm_user_assigned_identity.agw.id
+}
+
+output "password" {
+  value = azurerm_key_vault_secret.mysecret.secret_id
 }

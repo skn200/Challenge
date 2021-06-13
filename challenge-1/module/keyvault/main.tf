@@ -17,10 +17,10 @@ resource "azurerm_key_vault" "agw" {
   purge_protection_enabled   = var.keyvault.purge_enabled
   sku_name                   = var.keyvault.sku
 
-    network_acls {
-      default_action = "Allow"
-      bypass         = "AzureServices"
-    }
+  network_acls {
+    default_action = "Allow"
+    bypass         = "AzureServices"
+  }
 
   tags = var.tags
 }
@@ -98,4 +98,16 @@ resource "time_sleep" "wait_60_seconds" {
   depends_on = [azurerm_key_vault_certificate.mysecret]
 
   create_duration = "60s"
+}
+
+resource "random_password" "password" {
+  length           = 16
+  special          = true
+  override_special = "_%@"
+}
+
+resource "azurerm_key_vault_secret" "keysecret" {
+  name         = "${var.vmss_user}-password"
+  value        = random_password.password.result
+  key_vault_id = azurerm_key_vault.apw.id
 }

@@ -13,46 +13,49 @@ variable "keyvault_name" {
   type = string
 }
 
-variable "keyvault" { 
+variable "keyvault" {
   type = object({
-    soft_delete_enabled        = bool
-    soft_delete_retention      = string
-    purge_enabled              = bool
-    sku                        = string
-   })
+    soft_delete_enabled   = bool
+    soft_delete_retention = string
+    purge_enabled         = bool
+    sku                   = string
+  })
 }
 
 
 variable "certificate_permission" {
-    description = "List of permision required for Certificate"
-	type = list(string)
+  description = "List of permision required for Certificate"
+  type        = list(string)
 }
 
 variable "secret_permission" {
   description = "List of permission required for secrets"
-	type = list(string)
+  type        = list(string)
 }
 
 variable "certificate_name" {
   description = "Name of the Certificate to be created"
-	type = string
+  type        = string
 }
 
 variable "appgw_name" {
   description = "User Assigned Identity name to be used "
-  type = string
+  type        = string
 }
 
 variable "dns_names" {
   description = "DNS name of the certificate"
-	type = list(string)
+  type        = list(string)
 }
 
 variable "common-name" {
   description = "Common Name of the certificate"
-	type = string
+  type        = string
 }
 
+variable "vmss_user"{
+  type =string
+}
 
 variable "tags" {
   type = map(string)

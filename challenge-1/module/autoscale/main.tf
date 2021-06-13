@@ -1,4 +1,4 @@
-locals { }
+locals {}
 
 resource "azurerm_monitor_autoscale_setting" "scale" {
   name                = var.name
@@ -9,7 +9,7 @@ resource "azurerm_monitor_autoscale_setting" "scale" {
 
   dynamic "profile" {
     for_each = {
-      for value in var.profile: "${value.name}" => value
+      for value in var.profile : "${value.name}" => value
     }
     iterator = object
 
@@ -24,27 +24,27 @@ resource "azurerm_monitor_autoscale_setting" "scale" {
 
       dynamic "rule" {
         for_each = {
-          for value in object.value.rule: "${value.name}" => value
+          for value in object.value.rule : "${value.name}" => value
         }
         iterator = object_inner
 
         content {
           metric_trigger {
-            metric_name = object_inner.value.trigger.name
+            metric_name        = object_inner.value.trigger.name
             metric_resource_id = object_inner.value.trigger.target_id
-            operator = object_inner.value.trigger.operator
-            statistic = object_inner.value.trigger.statistic
-            time_aggregation = object_inner.value.trigger.time_aggregation
-            time_grain = object_inner.value.trigger.time_grain
-            time_window = object_inner.value.trigger.time_window
-            threshold = object_inner.value.trigger.threshold
+            operator           = object_inner.value.trigger.operator
+            statistic          = object_inner.value.trigger.statistic
+            time_aggregation   = object_inner.value.trigger.time_aggregation
+            time_grain         = object_inner.value.trigger.time_grain
+            time_window        = object_inner.value.trigger.time_window
+            threshold          = object_inner.value.trigger.threshold
           }
 
           scale_action {
-            cooldown = object_inner.value.action.cooldown
+            cooldown  = object_inner.value.action.cooldown
             direction = object_inner.value.action.direction
-            type = object_inner.value.action.type
-            value = object_inner.value.action.value
+            type      = object_inner.value.action.type
+            value     = object_inner.value.action.value
           }
         }
       }
@@ -53,14 +53,14 @@ resource "azurerm_monitor_autoscale_setting" "scale" {
   }
 
   dynamic "notification" {
-    for_each = length(var.notification) > 0 ? { "${var.notification.name}" = var.notification } : { }
+    for_each = length(var.notification) > 0 ? { "${var.notification.name}" = var.notification } : {}
     iterator = object
 
     content {
       email {
-        send_to_subscription_administrator = object.value.send_to_admin
+        send_to_subscription_administrator    = object.value.send_to_admin
         send_to_subscription_co_administrator = object.value.send_to_coadmin
-        custom_emails = object.value.custom_emails
+        custom_emails                         = object.value.custom_emails
       }
 
     }

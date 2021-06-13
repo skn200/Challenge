@@ -1,6 +1,6 @@
 locals {
   data_disk = flatten([
-    for value in var.data_disk: {
+    for value in var.data_disk : {
       lun     = value.lun
       size    = value.size
       caching = value.caching != "" ? value.caching : "None"
@@ -8,7 +8,7 @@ locals {
     }
   ])
   data_disk_map = {
-    for value in local.data_disk: "disk-data-${value.lun}" => value
+    for value in local.data_disk : "disk-data-${value.lun}" => value
   }
 }
 
@@ -16,13 +16,13 @@ resource "azurerm_virtual_machine_scale_set" "vmss" {
   name                = var.scale_set.name
   location            = var.location
   resource_group_name = var.resource_group_name
-  
-  
-  priority              = var.scale_set.priority != "" ? var.scale_set.priority : "Regular"
-  upgrade_policy_mode   = var.policy.upgrade
-  automatic_os_upgrade  = var.policy.os != "" ? var.policy.os : false
-  eviction_policy       = var.policy.eviction != "" ? var.policy.eviction : null
-  overprovision         = var.policy.overprovision != "" ? var.policy.overprovision : true
+
+
+  priority             = var.scale_set.priority != "" ? var.scale_set.priority : "Regular"
+  upgrade_policy_mode  = var.policy.upgrade
+  automatic_os_upgrade = var.policy.os != "" ? var.policy.os : false
+  eviction_policy      = var.policy.eviction != "" ? var.policy.eviction : null
+  overprovision        = var.policy.overprovision != "" ? var.policy.overprovision : true
 
   single_placement_group       = var.single_placement_group != "" ? var.single_placement_group : true
   proximity_placement_group_id = var.scale_set.ppg_id != "" ? var.scale_set.ppg_id : null
@@ -39,19 +39,16 @@ resource "azurerm_virtual_machine_scale_set" "vmss" {
   os_profile {
     computer_name_prefix = var.scale_set.name
     admin_username       = var.root.user_name != "" ? var.root.user_name : "adminuser"
+    admin_password       = var.root.password
   }
 
   os_profile_linux_config {
     disable_password_authentication = true
 
-    ssh_keys {
-      key_data = var.root.ssh_key
-      path     = "/home/${var.root.user_name}/.ssh/authorized_keys"
-    }
   }
 
   dynamic "identity" {
-    for_each = length(var.identity.user_id_ids) > 0 ? { "UserAssigned" = var.identity.user_id_ids } : { }
+    for_each = length(var.identity.user_id_ids) > 0 ? { "UserAssigned" = var.identity.user_id_ids } : {}
     iterator = object
 
     content {
@@ -61,7 +58,7 @@ resource "azurerm_virtual_machine_scale_set" "vmss" {
   }
 
   dynamic "identity" {
-    for_each = var.identity.system == true ? [ "SystemAssigned" ] : [ ]
+    for_each = var.identity.system == true ? ["SystemAssigned"] : []
     iterator = object
 
     content {
@@ -73,11 +70,11 @@ resource "azurerm_virtual_machine_scale_set" "vmss" {
     name    = "${var.scale_set.name}-nic-1"
     primary = true
 
-    accelerated_networking    = var.nic.accelerated != "" ? var.nic.accelerated : false
-    ip_forwarding             = var.nic.ipforward != "" ? var.nic.ipforward : false
+    accelerated_networking = var.nic.accelerated != "" ? var.nic.accelerated : false
+    ip_forwarding          = var.nic.ipforward != "" ? var.nic.ipforward : false
     #network_security_group_id = var.nic.nsg_id != "" ? var.nic.nsg_id : null
 
-    
+
     ip_configuration {
       name      = "ipconfig-1"
       primary   = true

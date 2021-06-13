@@ -1,13 +1,13 @@
 locals {
   subnets = flatten([
-    for sub in var.subnet: {
+    for sub in var.subnet : {
       name      = sub.name
       prefix    = sub.prefix
       endpoints = sub.endpoints
     }
   ])
   subnets_map = {
-    for s in local.subnets: "${s.name}" => s
+    for s in local.subnets : "${s.name}" => s
   }
 }
 resource "azurerm_resource_group" "network-rg" {
@@ -29,6 +29,6 @@ resource "azurerm_subnet" "subnet" {
   virtual_network_name = azurerm_virtual_network.vnet.name
   resource_group_name  = azurerm_resource_group.network-rg.name
 
-  address_prefixes    = each.value.prefix
+  address_prefixes  = each.value.prefix
   service_endpoints = each.value.endpoints != "" ? each.value.endpoints : null
 }

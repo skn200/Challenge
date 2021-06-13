@@ -1,5 +1,5 @@
 locals {
-  
+
   diag_appgw_logs = [
     "ApplicationGatewayAccessLog",
     "ApplicationGatewayPerformanceLog",
@@ -11,9 +11,9 @@ locals {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "agw" {
-  name                          = "${var.name}-diag"
-  target_resource_id            = azurerm_application_gateway.appgw.id
-  log_analytics_workspace_id    = var.log_analytics_workspace_id
+  name                       = "${var.name}-diag"
+  target_resource_id         = azurerm_application_gateway.appgw.id
+  log_analytics_workspace_id = var.log_analytics_workspace_id
   dynamic "log" {
     for_each = local.diag_appgw_logs
     content {

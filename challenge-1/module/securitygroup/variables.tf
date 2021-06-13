@@ -1,16 +1,16 @@
 variable "resource_group_name" {
-	type = string
+  type = string
 
 }
 
 variable "location" {
-	type = string
+  type = string
 
 }
 
 variable "security_group" {
- type = list(object({
-	name                       = string
+  type = list(object({
+    name                       = string
     priority                   = number
     direction                  = string
     access                     = string
@@ -18,21 +18,21 @@ variable "security_group" {
     source_port_range          = string
     destination_address_prefix = string
     destination_port_range     = string
-    }))
+  }))
 }
 
 variable "web_nsg" {
-    type = string
+  type = string
 
 }
 
 variable "source_address_prefix" {
-    type = string
+  type = string
 }
 
 
 variable "target_subnet_id" {
-	type = string
+  type = string
 }
 
 variable "tags" {

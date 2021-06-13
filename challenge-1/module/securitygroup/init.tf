@@ -10,9 +10,9 @@ terraform {
 
 
 provider "azurerm" {
-  version         = "2.55.0"
+  version = "2.55.0"
   #version         = "=2.0.0"
-  features{}
+  features {}
 
   #tenant_id       = var.tenant_id
   #client_id       = var.client_id
