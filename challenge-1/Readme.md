@@ -17,7 +17,7 @@ Pre requisite to build the solution
     Azure service principle
     Terraform open source installed , azure CLI or Powershell
 
-Architecture
+Architecture:
 
 
 Components used in this template:
