@@ -19,7 +19,8 @@ Pre requisite to build the solution
 
 Architecture:
 
-![image](https://user-images.githubusercontent.com/58088308/121822175-45630500-ccbb-11eb-841a-db7f0503a172.png)
+![image](https://user-images.githubusercontent.com/58088308/121925952-0edcc700-cd5b-11eb-8bce-e84f2a4237e7.png)
+
 
 
 
