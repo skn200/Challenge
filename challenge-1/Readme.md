@@ -48,6 +48,7 @@ Terraform Module: A Terraform module is a set of Terraform configuration files i
 For this deployment we have created 9 modules as explained below.
 Terraform Module structure:-
 
+```bash
 
 ├── main.tf                   // The root module which calls sub modules sequentially for terraform resources provisoning.
 ├── variables.tf              // It contain the declarations for variables.
@@ -90,7 +91,9 @@ Terraform Module structure:-
            ├── outputs.tf     // It expose the required attribute of Key vault.
         ├──securitygroup      // Module to create Security Group.
            ├── main.tf        // Primary configuration to provision Security Group.
-           ├── variables.tf   // It contains required variables to create and configure Security Group.   
+           ├── variables.tf   // It contains required variables to create and configure Security Group. 
+
+```             
 
 Deployment Steps:-
 
