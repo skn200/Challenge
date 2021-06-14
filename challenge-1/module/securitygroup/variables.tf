@@ -1,3 +1,4 @@
+
 variable "resource_group_name" {
   type = string
 
@@ -8,33 +9,30 @@ variable "location" {
 
 }
 
-variable "security_group" {
-  type = list(object({
-    name                       = string
-    priority                   = number
-    direction                  = string
-    access                     = string
-    protocol                   = string
-    source_port_range          = string
-    destination_address_prefix = string
-    destination_port_range     = string
-  }))
-}
-
-variable "web_nsg" {
-  type = string
-
-}
-
-variable "source_address_prefix" {
+variable "bastion_subnet_cidr" {
   type = string
 }
 
-
-variable "target_subnet_id" {
+variable "bastion_subnet_id" {
   type = string
 }
 
-variable "tags" {
-  type = map(string)
+variable "web_subnet_cidr" {
+  type = string
+}
+
+variable "web_subnet_id" {
+  type = string
+}
+
+variable "app_subnet_cidr" {
+  type = string
+}
+
+variable "app_subnet_id" {
+  type = string
+}
+
+variable "appgw_subnet_cidr" {
+  type = string
 }

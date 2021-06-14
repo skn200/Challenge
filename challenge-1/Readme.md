@@ -39,6 +39,8 @@ Components used in this template:
 
 7) Log Analytics is a Azure tool used to edit and run log queries with data in Azure Monitor Logs. We are using Log Analytics workspace for collecting data from application gateway.
 
+8) Azure Bastion is a PAAS service for secure and seamless SSH/RDP connectivity to your Vms directly from Azure Portal over SSL.
+
 
 Terraform Module: A Terraform module is a set of Terraform configuration files in a single directory. Even a simple configuration consisting of a single directory with one or more .tf files is a module. Or we can say Module is a container for multiple resources that are used together.
 
@@ -62,6 +64,9 @@ Terraform Module structure:-
            ├── main.tf        // Primary configuration to provision linux VMss, NIC, Availability zone etc.
            ├── variables.tf   // It contains required variables to create Compute resources.
            ├── outputs.tf     // It expose the required attribute of compute resources.
+        ├──bastion            // Module to create Azure Bastion
+           ├── main.tf        // Primary configuration to provision Azure Bastion.
+           ├── variables.tf   // It contains required variables to create Azure Bastion resources.   
         ├──autoscale          // Module to create Autoscalling
            ├── main.tf        // Primary configuration to provision Autoscalling.
            ├── variables.tf   // It contains required variables to create Autoscalling resources.
