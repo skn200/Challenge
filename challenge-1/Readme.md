@@ -45,7 +45,7 @@ Components used in this template:
 
 Terraform Module: A Terraform module is a set of Terraform configuration files in a single directory. Even a simple configuration consisting of a single directory with one or more .tf files is a module. Or we can say Module is a container for multiple resources that are used together.
 
-For this deployment we have created 9 modules as explained below.
+For this deployment we have created 10 modules as explained below.
 Terraform Module structure:-
 
 ```bash
