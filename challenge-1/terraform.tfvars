@@ -16,26 +16,45 @@ subnet = [
     endpoints = []
   },
   {
-    name      = "lb-subnet"
+    name      = "bastion-subnet"
     prefix    = ["10.0.1.0/24"]
     endpoints = []
   },
   {
-    name      = "web-subnet"
+    name      = "lb-subnet"
     prefix    = ["10.0.2.0/24"]
     endpoints = []
   },
   {
-    name      = "app-subnet"
+    name      = "web-subnet"
     prefix    = ["10.0.3.0/24"]
     endpoints = []
   },
   {
-    name      = "db-subnet"
+    name      = "app-subnet"
     prefix    = ["10.0.4.0/24"]
+    endpoints = []
+  },
+  {
+    name      = "db-subnet"
+    prefix    = ["10.0.5.0/24"]
     endpoints = []
   }
 ]
+
+
+########################### SECURITY GROUPS ###########
+
+bastion_subnet_cidr         = "10.0.1.0/24"
+web_subnet_cidr             = "10.0.3.0/24"
+app_subnet_cidr             = "10.0.4.0/24"
+appgw_subnet_cidr           = "10.0.0.0/24"
+
+
+########################### BASTION ####################
+
+bastion_hostname            = "bastion_host"
+
 
 ############################ LOG ANALYTICS ##############
 

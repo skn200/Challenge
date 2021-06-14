@@ -27,6 +27,34 @@ variable "subnet" {
   }))
 }
 
+######################### SECURITY GROUPS ##############
+
+
+variable "bastion_subnet_cidr" {
+  type = string
+}
+
+variable "web_subnet_cidr" {
+  type = string
+}
+
+variable "app_subnet_cidr" {
+  type = string
+}
+
+variable "appgw_subnet_cidr" {
+  type = string
+}
+
+
+######################### BASTION #####################
+
+variable "bastion_hostname" {
+  description = "Bastion Hostname"
+  type = string
+ 
+}
+
 
 ######################### Log Analytics ################
 

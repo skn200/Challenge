@@ -22,6 +22,35 @@ module "network" {
 
 }
 
+
+######################## SECURITY GROUP #############
+
+resource_group_name         = var.resource_group_name
+location                    = var.location
+
+bastion_subnet_cidr         = var.bastion_subnet_cidr
+bastion_subnet_id           = module.network.subnet["bastion-subnet"].id
+web_subnet_cidr             = var.web_subnet_cidr
+web_subnet_id               = module.network.subnet["web-subnet"].id
+app_subnet_cidr             = var.app_subnet_cidr
+app_subnet_id               = module.network.subnet["app-subnet"].id
+appgw_subnet_cidr           = var.appgw_subnet_cidr
+
+
+
+########################## BASTION ###################
+
+module bastion" {
+
+source = "./module/bastion"
+
+resource_group_name         = var.resource_group_name
+location                    = var.location
+bastion_subnet_id           = module.network.subnet["bastion-subnet"].id
+bastion_hostname            = var.bastion_hostname
+}
+
+
 ########################## LOG ANALYTICS ###############
 
 module "loganalytics" {
